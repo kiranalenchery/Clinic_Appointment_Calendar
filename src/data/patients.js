@@ -1,0 +1,7 @@
+const patients = [
+  { id: 1, name: 'John Doe' },
+  { id: 2, name: 'Alice Smith' },
+  { id: 3, name: 'Bob Johnson' },
+];
+
+export default patients;

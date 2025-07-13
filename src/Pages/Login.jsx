@@ -1,6 +1,6 @@
 import React from "react";
 import useLogin from "../hooks/useLogin";
-import { Eye, EyeOff, User, Lock } from "lucide-react";
+import { User, Lock } from "lucide-react";
 
 export default function Login() {
   const {
