@@ -4,7 +4,7 @@ export default function LogoutButton() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("isAuthenticated"); // if using localStorage
+    localStorage.removeItem("isAuthenticated"); 
     navigate("/"); 
   };
 

@@ -1,0 +1,102 @@
+/* src/styles/CalendarMobile.css */
+
+@media (max-width: 768px) {
+  .rbc-calendar-mobile {
+    font-size: 12px;
+  }
+
+  .rbc-toolbar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .rbc-toolbar-label {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    order: -1;
+  }
+
+  .rbc-btn-group {
+    justify-content: center;
+  }
+
+  .rbc-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  /* Specific Big Calendar overrides for mobile day view scrolling */
+  .rbc-calendar-mobile .rbc-time-content {
+    overflow-y: scroll !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* You might keep some of these if they specifically help with day view,
+     otherwise, they might only apply to month view if it were visible.
+     I've included them as they were in your inline style. */
+  .rbc-month-view {
+    height: auto;
+  }
+
+  .rbc-date-cell {
+    height: 40px;
+    font-size: 12px;
+  }
+
+  .rbc-event {
+    font-size: 10px;
+    padding: 2px 4px;
+  }
+
+  .rbc-row-content {
+    overflow: visible;
+  }
+
+  .rbc-show-more {
+    font-size: 10px;
+    padding: 2px 4px;
+  }
+
+  .rbc-month-row {
+    min-height: 60px;
+  }
+
+  .rbc-header {
+    font-size: 11px;
+    padding: 8px 4px;
+  }
+
+  .rbc-today {
+    background-color: #f0f9ff;
+  }
+
+  .rbc-off-range-bg {
+    background-color: #f8f9fa;
+  }
+}
+
+@media (max-width: 480px) {
+  .rbc-calendar-mobile {
+    font-size: 11px;
+  }
+
+  .rbc-date-cell {
+    height: 35px;
+  }
+
+  .rbc-month-row {
+    min-height: 50px;
+  }
+
+  .rbc-event {
+    font-size: 9px;
+    padding: 1px 2px;
+  }
+
+  .rbc-header {
+    font-size: 10px;
+    padding: 6px 2px;
+  }
+}

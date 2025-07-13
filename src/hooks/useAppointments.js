@@ -5,7 +5,6 @@ const APPOINTMENTS_KEY = "appointments";
 const useAppointments = () => {
   const [appointments, setAppointments] = useState([]);
 
-  // Load from localStorage on mount
   useEffect(() => {
     const stored = localStorage.getItem(APPOINTMENTS_KEY);
     if (stored) {
@@ -13,12 +12,10 @@ const useAppointments = () => {
     }
   }, []);
 
-  // Save to localStorage whenever appointments change
   useEffect(() => {
     localStorage.setItem(APPOINTMENTS_KEY, JSON.stringify(appointments));
   }, [appointments]);
 
-  // Add appointment with unique ID if not present
   const addAppointment = (appointment) => {
     const newAppointment = {
       ...appointment,
@@ -27,7 +24,6 @@ const useAppointments = () => {
     setAppointments((prev) => [...prev, newAppointment]);
   };
 
-  // Update appointment by ID
   const updateAppointment = (updatedAppointment) => {
     setAppointments((prev) =>
       prev.map((appointment) =>
@@ -47,7 +43,7 @@ const useAppointments = () => {
     appointments,
     addAppointment,
     updateAppointment,
-    deleteAppointment
+    deleteAppointment,
   };
 };
 

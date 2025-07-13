@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import patients from '../data/patients';
-import doctors from '../data/doctors';
+
+const patients = [
+  { id: 1, name: 'John Doe' },
+  { id: 2, name: 'Jane Smith' },
+  { id: 3, name: 'Mike Johnson' }
+];
+
+const doctors = [
+  { id: 1, name: 'Dr. Wilson' },
+  { id: 2, name: 'Dr. Brown' },
+  { id: 3, name: 'Dr. Davis' }
+];
 
 const AppointmentModal = ({ open, onClose, onSave, slotInfo, editData }) => {
   const [patient, setPatient] = useState('');
@@ -32,7 +42,7 @@ const AppointmentModal = ({ open, onClose, onSave, slotInfo, editData }) => {
     end.setMinutes(end.getMinutes() + 30);
 
     onSave({
-      ...(editData || {}), // retain ID and other data when editing
+      ...(editData || {}),
       title: `${patient} with ${doctor}`,
       start,
       end,
@@ -46,85 +56,102 @@ const AppointmentModal = ({ open, onClose, onSave, slotInfo, editData }) => {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-lg w-[90%] max-w-md">
-        <h2 className="text-xl font-semibold mb-4">
-          {editData ? 'Edit Appointment' : 'New Appointment'}
-        </h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Patient */}
-          <div>
-            <label className="block text-sm font-medium">Patient</label>
-            <select
-              className="w-full border px-3 py-2 rounded"
-              value={patient}
-              onChange={(e) => setPatient(e.target.value)}
-            >
-              <option value="">Select patient</option>
-              {patients.map((p) => (
-                <option key={p.id} value={p.name}>
-                  {p.name}
-                </option>
-              ))}
-            </select>
-          </div>
+    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg w-full max-w-md max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b px-4 py-3 md:px-6 md:py-4">
+          <h2 className="text-lg md:text-xl font-semibold text-gray-900">
+            {editData ? 'Edit Appointment' : 'New Appointment'}
+          </h2>
+        </div>
 
-          {/* Doctor */}
-          <div>
-            <label className="block text-sm font-medium">Doctor</label>
-            <select
-              className="w-full border px-3 py-2 rounded"
-              value={doctor}
-              onChange={(e) => setDoctor(e.target.value)}
-            >
-              <option value="">Select doctor</option>
-              {doctors.map((d) => (
-                <option key={d.id} value={d.name}>
-                  {d.name}
-                </option>
-              ))}
-            </select>
-          </div>
+        <div className="px-4 py-4 md:px-6 md:py-6">
+          <div className="space-y-4 md:space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Patient *
+              </label>
+              <select
+                className="w-full border border-gray-300 px-3 py-2 md:py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm md:text-base"
+                value={patient}
+                onChange={(e) => setPatient(e.target.value)}
+                required
+              >
+                <option value="">Select patient</option>
+                {patients.map((p) => (
+                  <option key={p.id} value={p.name}>
+                    {p.name}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-          {/* Date */}
-          <div>
-            <label className="block text-sm font-medium">Date</label>
-            <input
-              type="date"
-              className="w-full border px-3 py-2 rounded"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            />
-          </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Doctor *
+              </label>
+              <select
+                className="w-full border border-gray-300 px-3 py-2 md:py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm md:text-base"
+                value={doctor}
+                onChange={(e) => setDoctor(e.target.value)}
+                required
+              >
+                <option value="">Select doctor</option>
+                {doctors.map((d) => (
+                  <option key={d.id} value={d.name}>
+                    {d.name}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-          {/* Time */}
-          <div>
-            <label className="block text-sm font-medium">Time</label>
-            <input
-              type="time"
-              className="w-full border px-3 py-2 rounded"
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
-            />
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Date *
+                </label>
+                <input
+                  type="date"
+                  className="w-full border border-gray-300 px-3 py-2 md:py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm md:text-base"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  required
+                />
+              </div>
 
-          {/* Actions */}
-          <div className="flex justify-end space-x-2">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Time *
+                </label>
+                <input
+                  type="time"
+                  className="w-full border border-gray-300 px-3 py-2 md:py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm md:text-base"
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="sticky bottom-0 bg-white border-t px-4 py-3 md:px-6 md:py-4">
+          <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 bg-gray-200 rounded"
+              className="w-full sm:w-auto px-4 py-2 md:py-3 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors text-sm md:text-base font-medium"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded"
+              onClick={handleSubmit}
+              className="w-full sm:w-auto px-4 py-2 md:py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors text-sm md:text-base font-medium"
             >
               {editData ? 'Update' : 'Save'}
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
